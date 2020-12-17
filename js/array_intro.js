@@ -11,17 +11,17 @@ var mixed = [
     1
 ];
 console.log(mixed[3]);
-mixed.push('value');
+mixed.push([1,2,34,5]);
 mixed.push('12');
 mixed.push('dsfsef');
 
 console.log(mixed);
 
-// function oneModifier(item,index, arr) {
-//     if(item === 1) {
-//         arr[index] = 'one at place '+index
-//     }
-// }
+function oneModifier(item,index, arr) {
+    if(item === 1) {
+        arr[index] = 'one at place '+index
+    }
+}
 
 // without mutating the original array
 console.log(mixed.map(function (item,index) {
@@ -32,10 +32,6 @@ console.log(mixed.map(function (item,index) {
 }));
 
 // By mutating the original array
-mixed.map(function (item,index,arr) {
-    if(item === 1) {
-        arr[index] = 'one at place '+index;
-    }
-});
+mixed.map(oneModifier);
 
 console.log(mixed);
