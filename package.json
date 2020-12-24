@@ -1,0 +1,23 @@
+{
+  "name": "cv-raman-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "anyname" : "rimraf index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://manishmahant-attainu@github.com/manishmahant-attainu/cv-raman-back-end.git"
+  },
+  "author": "Manish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manishmahant-attainu/cv-raman-back-end/issues"
+  },
+  "homepage": "https://github.com/manishmahant-attainu/cv-raman-back-end#readme",
+  "dependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
