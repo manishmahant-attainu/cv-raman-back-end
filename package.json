@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run-file": "babel-watch index.js",
+    "start": "babel-watch ./src/index.js",
     "clean": "rimraf dist && mkdir dist",
     "babel-build": "babel -d ./dist ./src -s",
     "build": "npm run clean && npm run babel-build"
