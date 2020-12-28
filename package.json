@@ -2,10 +2,13 @@
   "name": "es6-js",
   "version": "1.0.0",
   "description": "Node Js ia a javascript runtime",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "anyname": "node index.js"
+    "run-file": "babel-watch index.js",
+    "clean": "rimraf dist && mkdir dist",
+    "babel-build": "babel -d ./dist ./src -s",
+    "build": "npm run clean && npm run babel-build"
   },
   "repository": {
     "type": "git",
