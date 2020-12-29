@@ -1,132 +1,99 @@
-// var abc;
-// console.log(abc);
-// abc = 10;
+// Template literals
+const a = 10;
+const b = 15;
+const c = 15;
+const name = "Manish";
+const personArr = [
+    "Manish", "Mahant", 2
+]
 
-//In let and const there will be no variable hoisting (tempral dead zone)
-// console.log(a)
-// console.log(b)
-// const a = "1";
-// let b = "2";
-
-
-// we can declare variable with help of "var" several times
-// var abc = 10;
-// var abc = 12;
-// console.log(abc);
-
-// We cannot redcalre the variables with "let" or "const"
-// const b = 1;
-// const b = 2;
-// console.log(b);
-
-// let a = 1;
-// let a = 2;
-// console.log(a);
-
-// "let" allows you to reassign the value but "const" does not
-// const b = 2;
-// b = 4;
-// let a = 2;
-// a = 4;
-
-// console.log(a);
-
-//Scoping Rules
-
-// var is of not block scope
-// "let" and "const" are of block scope
-// function run() {
-//     var abc = "abc";
-//     const bcd = "bcd";
-//     console.log(abc,bcd);
-//     {
-//         const bcd = "bcd v 2"
-//         let cde = "cde";
-//         console.log(cde);
-//         console.log(bcd);
-//         var abc = "abc v2";
-//     }
-//     console.log(bcd);
-//     console.log(abc);
-// }
-
-// run();
-
-// Scope explained by removing closure
-// var funcs = [];
-// for(let i=0; i < 5; i++) {
-//     let c = i*2; // i=4, 8
-//     funcs.push(function() {
-//         return console.log(c);
-//     });
-// }
-
-// console.log(i);
-// console.log(funcs);
-
-// funcs.forEach(function(value) {
-//     value();
-// });
-
-// for(let i=0; i<=5; i++) {
-//     console.log(i);
-// }
-
-// Destructuring
-// it can happen only in your arrays and objects;
-const person1 = {};
-// This will not work
-//person1 = { name: 'Manish' };
-//But this will
-person1.name = "Manish";
-
-// let student = {};
-// student = { name: 'Manish' };
-// console.log(student);
-
-person1.gender = "male";
-console.log(person1);
-
-const person2 = {
-    name: "Django",
-    gender: "unknown"
-}
-const person3 = {
-    name: "anyname",
-    gender: "anygender"
+const personObj = {
+    name: "Manish"
 }
 
-//decalre  define property names as per the value type     which variable you want ti destructure 
-// const      { gender, name }                             =  person1;
-
-// const { name: anyVariableName, gender: ornythingyoulike } = person2;
-// const { name: anyName, gender: anyGender } = person3;
-
-// console.log('name   ===>', name);
-// console.log('gender ===>', gender);
-
-// console.log(' anyVariableName name    ===>', anyVariableName);
-// console.log(' ornythingyoulike gender ===>', ornythingyoulike);
-
-// console.log(' person3 name    ===>', anyName);
-// console.log(' person3 gender ===>', anyGender);
-
-const person = {
-    name: "AnyName",
-    age: 38,
-    gender: "AnyGender",
-    eyeSight: "ok",
-    legs: 2,
-    hands: 1
+function sum() {
+    return a+b;
 }
-// "..." while desctructuring are called "rest operators"
-let { eyeSight, ...anyVariableName } = person;
 
-console.log(eyeSight);
-console.log(anyVariableName);
+            //sum of a variable and  a variable is an expression
+const str = `sum of ${c} and ${b} is ${sum()}`;
 
-const numbers = [1,2,3,4,5,6,7,8];
+console.log(str);
 
-const [ a1,a2,a3, ...anyvarname ] = numbers;
+// MultiLines
+function greetHello(name) {
+    // return 'Hello, '+'\n'+ name
+    return `Hello,
+Manish`;
+}
 
-console.log(anyvarname);
+console.log(greetHello('Manish'));
+//       ${}                        ${}
+// Hello NAME. How is the wether at LOCATION.
+
+
+//Tag Functions in literals
+function covertToUpperTagfn(literal,...values) {
+    console.log('static string',literal);
+    console.log('dynamic values', values);
+    let output = "";
+    for(let i = 0; i < literal.length; i++){
+        output += literal[i];
+        if(i < values.length) {
+            output += values[i];
+        }
+    }
+    return output.toUpperCase();
+}
+let firstName = "Manish";
+let lastName = "Mahant";
+let company = "Company";
+let location = "Earth";
+let result = covertToUpperTagfn `Hello, ${firstName} ${lastName} this is a ${company} on ${location}`;
+console.log(result);
+
+// literal[0] + values[0] +literal[1] + values[1]
+
+// static string [ 'Hello, ', ' ', ' this is a ', ' on ', '' ]
+// dynamic values [ 'Manish', 'Mahant', 'Company', 'Earth' ]
+
+
+// New String methods (includes, repeat, startsWith, endsWith)
+
+const strr = "this is cv raman batch"+'\n';
+console.log(strr.includes("raman",11));
+
+console.log(strr.repeat(2+2))
+
+console.log(strr.startsWith('this'));
+
+console.log(strr.split(''));
+
+console.log(strr.endsWith('this'));
+
+
+// Arrow functions || Fat Arrow
+
+//ES5
+function multiply(p1,p2) {
+    return p1*p2;
+}
+//ES5
+var multipl = function(p1,p2) {
+    return p1*p2;
+}
+
+//ES6
+const multip = (p1,p2) => {
+    p1 = p1**2;
+    p2 = p2**2;
+    return p1*p2;
+};
+console.log((multip(3,9)));
+
+const square = p => p**2;
+console.log(square(9));
+
+const conf = n => ({name:n});
+
+console.log(conf("Manish"));
