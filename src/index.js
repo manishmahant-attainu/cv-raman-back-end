@@ -1,80 +1,65 @@
-//How ES6 function is different from ES5 function
-/**
- * 1. Syntax
- * var add = function (a,b) {
- *  return a+b;
- * }
- * const add = (a,b) => (a+b);
- * 
- * 2. Argument Binding
- * let myFunc = {
-    showArgs() {
-        console.log(arguments);
+//	ES6 Classes
+class Person {
+    constructor(name) {
+        this.name = name;
     }
-}
-myFunc.showArgs(1,2,3,4,"Name");
-Here argument binding dosen't works
-let myFunc2 = {
-    showArgs: () => {
-        console.log(arguments);
-    }
-}
-myFunc2.showArgs(1,2,3,4,"Name");
- */
 
-// Use of "this" keyword
-// Arrow function does not have there own "this"
-// Arrow function if has "this" written inside, then it will always bound to the value of "this"
-// in the closest non-arrow parent function
-
-
-// var abcd; //Declasration;
-
-abcd = 20; //Initialisation
-
-var c, abcd, aa;  //hoisting
-
-// c =20;
-// abcd = 20;
-// a =10;
-
-let aa = 10;
-const bb = 20;
-
-let person = {
-    name: "Manish",
-    thisIsArrow: () => {
-        console.log(`My name is ${this.name}`); //it will work
-    },
-    thisIsReguar() {
-        console.log(`My name is ${this.name}`);  //it will undefined
-    }
-};
-console.log(person.thisIsReguar());
-
-function abc() {
-    console.log('checking this for object',this);
-    this.day = "wed";
-    this.nextDay = function () {
-        console.log(`day after ${this.day}`);
+    walk() {
+        console.log(`${this.name} is walking.`);
+        return this;
     }
 }
 
-const ab = new abc();
+class Programmer extends Person {
+    constructor(name,programmingLanguage) {
+        super(name);
+        this.programmingLanguage = programmingLanguage;
+    }
 
-var aaa = function () {
-    console.log('dfdfgdg');
+    writeCode() {
+        console.log(`${this.name} is coding.`);
+        return  this;
+    }
 }
-                            //"this"
-// ab.nextDay = ab.nextDay.bind(ab,aaa);
 
-// ab.nextDay.call(ab,aaa);
-// ab.nextDay.apply(ab,[aaa]);
-const a = ab.nextDay;
+class Company extends Programmer {
+    constructor(name,programmingLanguage,department) {
+        super(name,programmingLanguage);
+        this.department = department;
+    }
+    getDepartment() {
+        console.log(`${this.name} is in ${this.department} department.`);
+        return  this;
+    }
+}
+
+const amit = new Company('Amit','JavaScript','FullStack');
+console.log(amit.walk().getDepartment().writeCode());
 
 
-console.log(a());
+//	ES6 Getters and Setters
+console.log('ES6 Getters and Setters');
+class Human {
+    constructor(name) {
+        this._name = name;
+    }
 
-//This dosen't works in arrow function
-const sum = (a,b) => a+b;
-const s = new sum();
+    get name() {
+        return this._name;
+    }
+
+    set name(newName) {
+        this._name = newName;
+    }
+}
+
+const om = new Human('Om');
+
+om.name = "ES6";
+
+console.log(om._name);
+console.log(om.name);
+
+const a = {name: "ES6"};
+
+console.log(`hello this is ${a}`);
