@@ -18,8 +18,11 @@ const http = require('http');
 // console.log(JSON.stringify(constants));
 const server = http.createServer((req,resp)=>{
     console.log(req.url);
-    resp.setHeader('Content-Type','application/json');
-    resp.end(JSON.stringify(constants));
+    if(req.url === '/phones') {
+        resp.setHeader('Content-Type','application/json');
+        resp.end(JSON.stringify(constants));
+    }
+    resp.end(<h1>Some text content</h1>);
 });
 // console.log(server);
 server.listen(PORT);
