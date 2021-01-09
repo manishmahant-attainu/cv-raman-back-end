@@ -29,6 +29,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-watch": "^7.0.0",
     "isomorphic-fetch": "^3.0.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "superheroes": "^3.0.0"
   }
 }

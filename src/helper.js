@@ -1,7 +1,7 @@
-const sum = (a,b) => a+b;
-const sub = (a,b) => a-b;
+const helper = {
+    sum: function(a,b) {
+        return a+b;
+    }
+}
 
-// export default {
-//     sum,
-//     SUB:sub,
-// }
+export default helper;
