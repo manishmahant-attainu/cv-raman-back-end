@@ -8,7 +8,8 @@
     "start": "babel-watch ./src/index.js",
     "clean": "rimraf dist && mkdir dist",
     "babel-build": "babel -d ./dist ./src -s",
-    "build": "npm run clean && npm run babel-build"
+    "build": "npm run clean && npm run babel-build",
+    "file-demo": "babel-watch ./src/file.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,11 @@
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-syntax-jsx": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "babel-polyfill": "^6.26.0",
     "babel-watch": "^7.0.0",
+    "express": "^4.17.1",
     "isomorphic-fetch": "^3.0.0",
     "rimraf": "^3.0.2"
   }

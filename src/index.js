@@ -1,47 +1,44 @@
-// If you want to get some information from a file, that file must export something
-// In the file which you want some data of other file, must import
-
-// import constants, { PORT, HOST } from './constants';
-// import * as constants from './constants';
-// import someName from './constants';
-// console.log(constants);
-// console.log(PORT);
-// console.log(HOST);
-
-// import helper from './helper'; 
-// const helper = require('./helper.js')
-// const constants = require('./constants.js')
-// import constants from './constants';
 import constants, { PORT } from './constants';
-const http = require('http');
-// console.log(constants);
-// console.log(JSON.stringify(constants));
-const server = http.createServer((req,resp)=>{
-    console.log(req.url);
-    if(req.url === '/phones') {
-        resp.setHeader('Content-Type','application/json');
-        resp.end(JSON.stringify(constants));
-    }
-    resp.end(<h1>Some text content</h1>);
-});
-// console.log(server);
-server.listen(PORT);
+const server = require('express');
+const app = server();
+// console.log(app);
 
-// const htttp = {
-//     createServerr: function(cb) {
-//         const req = {};
-//         const resp = {};
-        
-//         return {
-//             listenn: function(port) {
-//                 //whenever some thing happens 
-//                 cb(req,resp);
-//             }
-//         }
+//createServer function requires a callback(function which can accept params)
+
+// const server = http.createServer((req,resp)=>{
+//     console.log(req.url);
+//     if(req.url === '/phones') {
+//         resp.setHeader('Content-Type','application/json');
+//         resp.end(JSON.stringify(constants));
 //     }
-// }
-// const serverr = htttp.createServerr((req,resp) => {
+//     resp.end('<h1>Some text content</h1>');
+// });
 
-// })
+// server.listen(PORT, ()=>{
+//     console.log(`Listening to: http://localhost:${PORT}`)
+// });
 
-// console.log(serverr);
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
+app.get('/about-me', (req, res) => {
+    console.log(req.url);
+    res.json(constants)
+})
+
+app.get('/projects', (req, res) => {
+    res.json(constants)
+})
+
+app.get('/contact-me', (req, res) => {
+    res.json(constants)
+})
+
+app.get('*', (req, res) => {
+    res.send('Page Not Found')
+})
+
+app.listen(PORT, 'localhost', ()=>{
+    console.log(`Listening to: http://localhost:${PORT}`)
+});
