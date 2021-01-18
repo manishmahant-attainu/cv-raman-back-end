@@ -8,8 +8,7 @@
     "start": "babel-watch ./src/index.js",
     "clean": "rimraf dist && mkdir dist",
     "babel-build": "babel -d ./dist ./src -s",
-    "build": "npm run clean && npm run babel-build",
-    "file-demo": "babel-watch ./src/file.js"
+    "build": "npm run clean && npm run babel-build"
   },
   "repository": {
     "type": "git",
