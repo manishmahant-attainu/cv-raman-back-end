@@ -40,7 +40,7 @@ async function runTask() {
         console.log(data)
         const data2 = await task2(); //2000
         console.log(data2)
-        const todo = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        const todo = await fetch('http://localhost:5002/todos');
         console.log(todo)
         const data3 = await task3(); //1000    
         console.log(data3)

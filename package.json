@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-watch ./src/index.js",
+    "server": "babel-watch ./src/server.js",
     "clean": "rimraf dist && mkdir dist",
     "babel-build": "babel -d ./dist ./src -s",
     "build": "npm run clean && npm run babel-build"
