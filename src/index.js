@@ -1,123 +1,53 @@
+//Asynchronous way 
+import 'babel-polyfill';
 import 'isomorphic-fetch';
 
-// What is a callback? Its a function passed as an argument, which may or may not be called.
-// Why callback is used? For achievieing async behaviour.
-// Callback hell? callbacks inside callbacks
-function c3() {
-
+function task() {
+    return new Promise(function(res,rej){
+        setTimeout(() => {
+            res('done');
+        }, 5000);
+    });
 }
 
-function c2(c) {
-    c()
+function task2() {
+    return new Promise(function(res,rej){
+        setTimeout(() => {
+            res('done 2');
+        }, 2000);
+    });
 }
 
-function c1(c) {
-    c(c3);
+function task3() {
+    return new Promise(function(res,rej){
+        setTimeout(() => {
+            rej('done 3');
+        }, 1000);
+    });
 }
 
-function m1(c) {
-    c(c2);
+// task3()
+// .then(res => console.log(res))
+// .catch(e => console.log('error:',e))
+
+
+// Async/Await
+// Await only works with async functions
+// if you are using await beside a function, that function must return a promise
+async function runTask() {
+    try {
+        const data = await task(); //5000
+        console.log(data)
+        const data2 = await task2(); //2000
+        console.log(data2)
+        const todo = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        console.log(todo)
+        const data3 = await task3(); //1000    
+        console.log(data3)
+        console.log('task done');
+    } catch (error) {
+        console.log('error:',error)
+    }
 }
-
-m1(c1);
-
-// Promises (ES6)
-// 3 states
-//  1. Pending
-//  2. resolved
-//  3. rejected
-
-// const p = new Promise(function(resolve,reject){
-//     // console.log(typeof resolve)
-//     setTimeout(() => {
-//         reject('manish');    
-//     }, 6000);
-//     setTimeout(() => {
-//         resolve(2);    
-//     }, 5000);
-    
-// });
-//Success Handling
-// p.then(r=>{
-//     console.log(r)
-//     return r*2;
-// }).then(r=>{
-//     console.log(r)
-//     return r*4;
-// })
-
-//Error handling
-// p.catch(e=>{
-//     console.log(e);
-// });
-
-// console.log(p);
-
-/** ******************************************************************** **/
-
-// function info(j) {
-//     console.log('info');
-//     console.log(j);
-// }
-
-// function mainFunc(i) {
-//     fetch('https://jsonplaceholder.typicode.com/todos/1')
-//         .then(response => response.json())
-//         .then(json => i(json))
-//         .catch(e => i(e))
-// }
-
-// mainFunc(info);
-// console.log('anything')
-
-/** ******************************************************************** **/
-
-// setTimeout(() => {
-//     console.log('setTimeout url');
-// }, 2000);
-
-// function pr(url){
-//     return new Promise(function(resolve,reject){
-//         fetch(url)
-//         .then(response => response.json())
-//         .then(json => resolve(json))
-//         .catch(e => reject(e))
-//     })
-// }
-// pr('https://jsonplaceholder.typicode.com/todos/1')
-//  .then(function(response){
-//     console.log(response);
-// })
-
-// console.log(2222)
-
-
-/** ******************************************************************** **/
-
-// Events
-
-// Sends the event
-// Receives the event
-var event = require('events');
-var eventEmitter = new event.EventEmitter();
-
-const listener1 = (chunck,p1,p2) => {
-    console.log('listener 1 executed')
-    console.log(chunck);
-    console.log(p1);
-    console.log(p2);
-}
-
-const listener2 = () => {
-    console.log('listener 2 executed')
-}
-
-eventEmitter.on('connection',listener1);
-eventEmitter.on('connection',listener2);
-eventEmitter.on('data',listener1);
-eventEmitter.on('end',listener2);
-eventEmitter.on('finish',listener1);
-eventEmitter.on('a',listener2);
-eventEmitter.on('b',listener2);
-
-eventEmitter.emit('data','mm,mms',2,3)
+runTask();
+console.log('random content');
