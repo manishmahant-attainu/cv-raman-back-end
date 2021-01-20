@@ -3,6 +3,27 @@
 export const PORT = 5000;
 export const HOST = 'localhost';
 export const YEAR = 2021;
+export const users = [
+    {
+        id: 1,
+        name: 'Manish',
+        gender: 'Male',
+        type: 'human'
+    },
+    {
+        id: 2,
+        name: 'Ravi',
+        gender: 'Male',
+        type: 'hero'
+    },
+    {
+        id: 3,
+        name: 'Subodh',
+        gender: 'Male',
+        type: 'SSJ5'
+    },
+
+];
 
 export default {
     PORT,
