@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tennis Player App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Tennis App</h2>
+                <hr>
+                <label for="">
+                    Name: <input type="text" id="playerName" class="form-control">
+                </label>
+                <label for="">
+                    Country: <input type="text" id="playerCountry"class="form-control">
+                </label>
+                <p><hr></p>
+                <button class="btn btn-success" id="addButton">Add Player</button>
+
+                <hr>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

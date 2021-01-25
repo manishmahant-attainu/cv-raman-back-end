@@ -32,6 +32,9 @@ const urlLogger = (request,response,next) => {
 // this callback function may or may not be execited form the function where it has been passed
 // this function can pass some parameters to the callback
 
+app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "hbs");
+
 //Defining static assets
 app.use(express.static(path.join(__dirname,'assets')));
 
@@ -47,6 +50,10 @@ app.get('/', (req, res) => {
     res.json({
         message: 'Welcome to your main api endpoint'
     })
+});
+
+app.get("/players", function(request, response) {
+    response.render("players.hbs");
 });
 
 app.get('/getUrlOpen', (req, res) => {
