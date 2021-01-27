@@ -32,7 +32,7 @@ const urlLogger = (request,response,next) => {
 // this callback function may or may not be execited form the function where it has been passed
 // this function can pass some parameters to the callback
 
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "hbs");
 
 //Defining static assets
@@ -114,6 +114,22 @@ app.get('/home', (req,res) => {
     const homeFilePath = path.join(__dirname,'home.html');
     res.sendFile(homeFilePath)
 });
+
+
+app.get('/hbshome',(req,res)=>{
+    const homeFilePath = path.join(__dirname,'home.hbs');
+    const data = {
+        isLoggedIn:true,
+        name:'Manish',
+        title: 'Welcome',
+        items: [
+            'pen',
+            'ball',
+            'mobile'
+        ]
+    }
+    res.render(homeFilePath,data);
+})
 
 
 //In express parameters count plays a very important role
