@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tennis Player App</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-    
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
                 <h2>Tennis App</h2>
                 <hr>
-                <label for="">
-                    Name: <input type="text" id="playerName" class="form-control">
-                </label>
-                <label for="">
-                    Country: <input type="text" id="playerCountry"class="form-control">
-                </label>
-                <p><hr></p>
-                <button class="btn btn-success" id="addButton">Add Player</button>
-
+                <form method="post" action="/p">
+                    <label for="playerName">
+                        Name: <input name="playerName" type="text" id="playerName" class="form-control">
+                    </label>
+                    <label for="playerCountry">
+                        Country: <input name="playerCountry" type="text" id="playerCountry" class="form-control">
+                    </label>
+                    <hr>
+                    <button type="submit" class="btn btn-success" id="addButton">Add Player</button>
+                </form>
                 <hr>
 
                 <table class="table table-striped">
@@ -38,5 +29,3 @@
             </div>
         </div>
     </div>
-</body>
-</html>

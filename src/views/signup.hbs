@@ -1,0 +1,39 @@
+    
+    <div class="container-fluid">
+        <div class="row">
+            <form action="/signup" method="post">
+                <div class="form-group">
+                    <label for="userName">
+                        Name: <input required="required" id="userName" name="name" type="text" value={{name}} />
+                    </label>
+                    <span>
+                        {{error.name}}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">
+                        Email: <input id="userEmail" name="email" type="text" value={{email}} />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="userAddress">
+                        Address: <input id="userAddress" name="address" type="text" value={{address}} />
+                    </label>
+                </div>
+                <hr>
+                <button class="btn btn-success" type="submit">SignUp</button>
+            </form>
+        </div>
+        <hr >
+        <div class="row">
+            <ul>
+                {{#each users}}
+                    <li>{{this.name}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        console.log('signup page')
+    </script>
