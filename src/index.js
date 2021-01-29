@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = 5002;
-const users = [];
+let users = [];
+let userCount = 0;
 
 app.set('views',path.join(__dirname,'views'));
 app.set("view engine", "hbs");
@@ -73,6 +74,102 @@ app.get('/users',(req,res)=>{
     });
 });
 
+app.get('/api/users',(req,res)=>{
+    let status = 200;
+    let message = 'Listing users.';
+    res.status(status).json({
+        data: users,
+        message
+    });
+});
+
+app.post('/api/users',(req,res)=>{
+    ++userCount;
+    const userData = {id:userCount,...req.body};
+    users.push(userData);
+    res.status(201).json({
+        data: userData,
+        message: 'New user created'
+    })
+});
+
+app.put('/api/users/:id',(req,res)=>{
+    let userData;
+    let message = 'User updated.';
+    userData = users.filter(user => user.id == req.params.id);
+    if(userData.length) {
+        users = users.map(user => {
+            if(user.id == req.params.id){
+                userData = { 
+                    id:user.id,
+                    ...req.body
+                }
+                return userData;
+            }
+            return user;
+        });
+    } else {
+        ++userCount;
+        userData = {id:userCount,...req.body};
+        users.push(userData);
+        message = 'New user created.';
+    }
+
+    res.status(201).json({
+        data: userData,
+        message
+    })
+});
+
+app.patch('/api/users/:id',(req,res)=>{
+    let userData;
+    let status = 200;
+    let message = 'User updated.';
+    userData = users.filter(user => user.id == req.params.id);
+    if(userData.length) {
+        users = users.map(user => {
+            if(user.id == req.params.id){
+                userData = { 
+                    id:user.id,
+                    ...req.body
+                }
+                return userData;
+            }
+            return user;
+        });
+    } else {
+        message = 'No such user found';
+        status = 404;
+    }
+
+    res.status(status).json({
+        data: userData,
+        message
+    })
+});
+
+app.delete('/api/users/:id',(req,res)=>{
+    let status = 200;
+    let message = 'User deleted.';
+    let userExists = users.filter(user => user.id == req.params.id);
+    if(userExists.length) {
+        users = users.filter(user => user.id != req.params.id)
+    } else {
+        message = 'No such user found';
+        status = 404;
+    }
+
+    res.status(status).json({
+        data: userExists,
+        message
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Listening on: http://localhost:${PORT}`);
 });
+
+
+// REST APIs
+// REST: Representational State Transfer | architectural style
+// API: Appication Program Interface | end points

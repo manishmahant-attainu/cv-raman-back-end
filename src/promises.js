@@ -2,9 +2,9 @@
 
 // 1st param is your resolve function no matter what name you give it
 // 2nd param is your reject function no matter what name you give it
-const p = new Promise((reject,resolve)=>{
-    reject('failure');
-    resolve('success');
+const p = new Promise((abc,cdf)=>{
+    cdf('failure');
+    abc('success');
 })
 .then(res=>{
     setTimeout(() => {
