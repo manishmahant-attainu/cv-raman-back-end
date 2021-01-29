@@ -9,7 +9,8 @@
     "clean": "rimraf dist && mkdir dist",
     "babel-build": "babel -d ./dist ./src -s",
     "build": "npm run clean && npm run babel-build",
-    "cb": "babel-watch ./src/callbacks.js"
+    "cb": "babel-watch ./src/callbacks.js",
+    "pms": "babel-watch ./src/promises.js"
   },
   "repository": {
     "type": "git",
