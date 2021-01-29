@@ -83,6 +83,23 @@ app.get('/api/users',(req,res)=>{
     });
 });
 
+app.get('/api/users/:id',(req,res)=>{
+    let status = 200;
+    let message = 'User data.';
+    let data = {};
+    let userExists = users.filter(user => user.id == req.params.id);
+    if(!userExists.length) {
+        message = 'No such user found';
+        status = 404;
+    } else {
+        data = userExists[0];
+    }
+    res.status(status).json({
+        data,
+        message
+    })
+});
+
 app.post('/api/users',(req,res)=>{
     ++userCount;
     const userData = {id:userCount,...req.body};
