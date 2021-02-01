@@ -1,10 +1,10 @@
     
     <div class="container-fluid">
         <div class="row">
-            <form action="/signup" method="post">
+            <form action="/signup" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="userName">
-                        Name: <input required="required" id="userName" name="name" type="text" value={{name}} />
+                        Name: <input required="required" id="userName" name="name" type="text" value={{name}} >
                     </label>
                     <span>
                         {{error.name}}
@@ -12,12 +12,23 @@
                 </div>
                 <div class="form-group">
                     <label for="userEmail">
-                        Email: <input id="userEmail" name="email" type="text" value={{email}} />
+                        Email: <input id="userEmail" name="email" type="text" value={{email}} >
                     </label>
                 </div>
                 <div class="form-group">
                     <label for="userAddress">
-                        Address: <input id="userAddress" name="address" type="text" value={{address}} />
+                        Address: <input id="userAddress" name="address" type="text" value={{address}} >
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="userProfileImage">
+                        Image: <input id="userProfileImage" name="profileImage" type="file" >
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="userProfileImage">
+                        Agree Terms: <input id="terms" name="terms" type="checkbox" value="yes" required="required">
                     </label>
                 </div>
                 <hr>
@@ -29,6 +40,7 @@
             <ul>
                 {{#each users}}
                     <li>{{this.name}}</li>
+                    <img width="100" alt="profile-image" src="./{{this.profileImage}}" />
                 {{/each}}
             </ul>
         </div>
