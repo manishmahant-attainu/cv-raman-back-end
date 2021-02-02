@@ -1,7 +1,7 @@
     
     <div class="container-fluid">
         <div class="row">
-            <form action="/signup" method="post" enctype="multipart/form-data">
+            <form action="/signup" method="post">
                 <div class="form-group">
                     <label for="userName">
                         Name: <input required="required" id="userName" name="name" type="text" value={{name}} >
@@ -14,35 +14,18 @@
                     <label for="userEmail">
                         Email: <input id="userEmail" name="email" type="text" value={{email}} >
                     </label>
+                    <span>
+                        {{error.email}}
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label for="userAddress">
-                        Address: <input id="userAddress" name="address" type="text" value={{address}} >
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label for="userProfileImage">
-                        Image: <input id="userProfileImage" name="profileImage" type="file" >
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label for="userProfileImage">
-                        Agree Terms: <input id="terms" name="terms" type="checkbox" value="yes" required="required">
+                    <label for="userPassword">
+                        Password: <input id="userPassword" name="password" type="password" >
                     </label>
                 </div>
                 <hr>
                 <button class="btn btn-success" type="submit">SignUp</button>
             </form>
-        </div>
-        <hr >
-        <div class="row">
-            <ul>
-                {{#each users}}
-                    <li>{{this.name}}</li>
-                    <img width="100" alt="profile-image" src="./{{this.profileImage}}" />
-                {{/each}}
-            </ul>
         </div>
     </div>
 
