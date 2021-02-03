@@ -17,17 +17,19 @@ app.use(session({ secret: 'sess_secret', cookie: { maxAge: 60000 }}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.locals.title = "Express Application";
+
 const PORT = 5002;
 
 let users = [{
-    id:1, name: "Manish", email: 'manish@yopmail.com', password: "123456"
+    id:1, name: "Manish", email: 'manish@yopmail.com', password: "1"
 }];
 let userCount = 1;
 
 const layout = path.join('layouts','index');
 
 const isLoggedIn = (req,res,next) => {
-    if(req.session.user) {
+    if(req.cookies.user && typeof req.cookies.user !== 'string') {
         next();
     } else {
         return res.redirect('/login');
@@ -78,8 +80,9 @@ app.get('/logout',(req,res)=>{
 });
 
 app.get('/login',(req,res)=>{
-    if(req.session.user) {
-        res.redirect('/profile');
+    console.log(req.cookies)
+    if(req.cookies.user && typeof req.cookies.user !== 'string') {
+        return res.redirect('/profile');
     }
     res.render('login',{
         title: 'Login',
@@ -92,8 +95,9 @@ app.post('/login',(req,res)=>{
     const error = {};
     const user = users.filter(i=>(i.email==req.body.email && i.password == req.body.password));
     if(user.length) {
-        req.session.user = user[0];
-        return res.redirect('/profile');
+        // req.session.user = user[0];
+
+        return res.cookie('user',user[0]).redirect('/profile');
     } else {
         error.email = 'Invalid email or password'
     }
@@ -106,6 +110,8 @@ app.post('/login',(req,res)=>{
 });
 
 app.get('/profile',isLoggedIn,(req,res)=> {
+    console.log(req.cookies)
+    console.log(typeof req.cookies.user)
     res.render('profile',{
         title: 'Profile',
         layout,
