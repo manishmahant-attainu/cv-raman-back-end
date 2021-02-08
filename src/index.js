@@ -19,7 +19,7 @@ app.set('views',path.join(__dirname,'views'));
 app.set("view engine", "hbs");
 
 app.use(cookieParser());
-app.use(session({ secret: 'sess_secret', cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'sess_secret', resave:true, saveUninitialized:true, cookie: { maxAge: 60000 }}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -83,11 +83,11 @@ app.post('/signup',(req,res)=> {
 
 app.get('/logout',(req,res)=>{
     req.session.user = '';
+    res.clearCookie('user');
     res.redirect('/login');
 });
 
 app.get('/login',(req,res)=>{
-    console.log(req.cookies)
     if(req.cookies.user && typeof req.cookies.user !== 'string') {
         return res.redirect('/profile');
     }
@@ -117,8 +117,6 @@ app.post('/login',(req,res)=>{
 });
 
 app.get('/profile',isLoggedIn,(req,res)=> {
-    console.log(req.cookies)
-    console.log(typeof req.cookies.user)
     res.render('profile',{
         title: 'Profile',
         layout,
