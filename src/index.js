@@ -1,10 +1,17 @@
+import 'babel-polyfill';
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
+import User from './models/User';
+
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const { MongoClient } = require("mongodb");
 
-import User from './models/User';
+const uri = "mongodb://localhost:27017";
+const client = new MongoClient(uri,{
+    useUnifiedTopology: true
+});
 
 const app = express();
 
@@ -116,6 +123,44 @@ app.get('/profile',isLoggedIn,(req,res)=> {
         title: 'Profile',
         layout,
         user: req.session.user
+    });
+});
+
+
+// I am fetching the data and I need this data
+app.get('/api/books', async (req,res)=>{
+    await client.connect();
+    const database = client.db('cv_raman');
+    const collection = database.collection('books');
+    // here also async call
+    const books = await collection.find({});
+    const allValues = await books.toArray();
+    await client.close();
+    res.json({
+        message: "Listing Books",
+        data: allValues,
+    })
+});
+
+// I just want to update the info, and don't need the data
+app.patch('/api/books/:isbn',async (req, resp)=> {
+    await client.connect();
+    const database = client.db('cv_raman');
+    const collection = database.collection('books');
+    collection.updateOne(
+        {
+            isbn:req.params.isbn
+        },
+        {
+            $set:{
+                status:true
+            }
+        }    
+    ).then(() => {
+        client.close();
+    });
+    resp.json({
+        message: 'Updated successfully'
     });
 });
 
